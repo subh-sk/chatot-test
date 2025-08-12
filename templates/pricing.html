@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing - FastAPI Web App{% endblock %}
+
+{% block content %}
+<section class="pricing-header animate__animated animate__fadeIn">
+    <h1>Choose the Right Plan for You</h1>
+    <p>We offer flexible pricing options to meet your needs</p>
+</section>
+
+<section class="pricing-container">
+    <div class="pricing-cards">
+        <div class="pricing-card" id="basic-plan">
+            <div class="pricing-header">
+                <h3>Basic</h3>
+                <div class="price">$9<span>/month</span></div>
+            </div>
+            <div class="pricing-features">
+                <ul>
+                    <li>✅ Core Features</li>
+                    <li>✅ 5 Projects</li>
+                    <li>✅ 10GB Storage</li>
+                    <li>✅ Basic Support</li>
+                    <li>❌ Advanced Analytics</li>
+                    <li>❌ Priority Support</li>
+                </ul>
+            </div>
+            <a href="/signup" class="btn secondary-btn">Get Started</a>
+        </div>
+        
+        <div class="pricing-card featured" id="pro-plan">
+            <div class="pricing-badge">Popular</div>
+            <div class="pricing-header">
+                <h3>Professional</h3>
+                <div class="price">$29<span>/month</span></div>
+            </div>
+            <div class="pricing-features">
+                <ul>
+                    <li>✅ Core Features</li>
+                    <li>✅ 20 Projects</li>
+                    <li>✅ 50GB Storage</li>
+                    <li>✅ Priority Support</li>
+                    <li>✅ Advanced Analytics</li>
+                    <li>❌ Custom Branding</li>
+                </ul>
+            </div>
+            <a href="/signup" class="btn primary-btn">Get Started</a>
+        </div>
+        
+        <div class="pricing-card" id="enterprise-plan">
+            <div class="pricing-header">
+                <h3>Enterprise</h3>
+                <div class="price">$99<span>/month</span></div>
+            </div>
+            <div class="pricing-features">
+                <ul>
+                    <li>✅ All Pro Features</li>
+                    <li>✅ Unlimited Projects</li>
+                    <li>✅ 500GB Storage</li>
+                    <li>✅ 24/7 Support</li>
+                    <li>✅ Advanced Analytics</li>
+                    <li>✅ Custom Branding</li>
+                </ul>
+            </div>
+            <a href="/signup" class="btn secondary-btn">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <h3>Can I upgrade or downgrade my plan?</h3>
+            <p>Yes, you can change your plan at any time. Changes will be reflected in your next billing cycle.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is there a free trial available?</h3>
+            <p>Yes, all plans come with a 14-day free trial. No credit card required.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What payment methods do you accept?</h3>
+            <p>We accept all major credit cards, PayPal, and bank transfers for annual plans.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+<script src="{{ url_for('static', path='/js/script.js') }}"></script>
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate pricing cards
+        gsap.from("#basic-plan", {duration: 0.8, opacity: 0, y: 50, delay: 0.2});
+        gsap.from("#pro-plan", {duration: 0.8, opacity: 0, y: 50, delay: 0.4});
+        gsap.from("#enterprise-plan", {duration: 0.8, opacity: 0, y: 50, delay: 0.6});
+        
+        // Hover effects for pricing cards
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        pricingCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {duration: 0.3, y: -10, boxShadow: '0 10px 30px rgba(0,0,0,0.15)'});
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {duration: 0.3, y: 0, boxShadow: '0 5px 15px rgba(0,0,0,0.1)'});
+            });
+        });
+    });
+</script>
+{% endblock %}

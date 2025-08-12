@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - FastAPI Web App{% endblock %}
+
+{% block content %}
+<section class="auth-container animate__animated animate__fadeIn">
+    <div class="auth-card">
+        <h2 class="auth-title">Create an Account</h2>
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="/signup" class="auth-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required class="form-control">
+            </div>
+            <button type="submit" class="btn primary-btn btn-block">Sign Up</button>
+        </form>
+        <div class="auth-footer">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<script src="{{ url_for('static', path='/js/script.js') }}"></script>
+
+{% block scripts %}
+<script>
+    // Form animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const formElements = document.querySelectorAll('.form-group');
+        
+        formElements.forEach((element, index) => {
+            gsap.from(element, {
+                duration: 0.5,
+                opacity: 0,
+                y: 20,
+                delay: 0.2 + (index * 0.1),
+                ease: "power2.out"
+            });
+        });
+        
+        // Add input focus animations
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                gsap.to(this, {duration: 0.3, scale: 1.02, ease: "power1.out"});
+            });
+            
+            input.addEventListener('blur', function() {
+                gsap.to(this, {duration: 0.3, scale: 1, ease: "power1.in"});
+            });
+        });
+    });
+</script>
+{% endblock %}
